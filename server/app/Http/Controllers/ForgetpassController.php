@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Forgetpass;
 use App\Models\User;
 use App\Notifications\forgetpassword;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class ForgetpassController extends Controller
 {
-    function forgotpassword(Forgetpass $req)
+    function forgotpassword(Request $req)
     {
         try {
             $user = User::where('email', $req->email)->first();
