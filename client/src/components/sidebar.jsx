@@ -88,7 +88,6 @@ const Sidebar = () => {
                             />
                         </svg>
                     </button>
-                    <Link to={'/'}>
                     <button 
                     className="flex items-center ps-2.5 mb-5">
                         <img
@@ -100,7 +99,6 @@ const Sidebar = () => {
                             TO-DO-LIST
                         </span>
                     </button>
-                    </Link>
                     <ul className="space-y-2 font-medium">
 
             <li>

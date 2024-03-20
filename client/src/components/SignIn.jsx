@@ -88,7 +88,7 @@ const SignIn = () => {
           <br />
           <br />
           <p className="text-center text-sm text-gray-500">
-            Don't have an account yet?
+            Don't have an account yet ? {" "}
             <Link to={'/signup'}>
             <button
               className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
@@ -96,6 +96,15 @@ const SignIn = () => {
               Sign up
             </button>
             .</Link>
+          </p>
+          <p className="text-center text-sm text-gray-500">
+            <Link to={'/forget_pass'}>
+            <button
+              className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+            >
+              Forgot password?
+            </button>
+            </Link>
           </p>
           <br />
         </div>
