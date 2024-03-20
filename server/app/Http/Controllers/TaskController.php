@@ -6,6 +6,7 @@ use App\Models\Task;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
@@ -39,8 +40,10 @@ class TaskController extends Controller
     function alltasks()
     {
         try {
-            $user = Auth::user();
-            return Task::alltasks($user->id);
+            return Cache::remember('all_tasks', 60 * 60, function () {
+                $user = Auth::user();
+                return Task::alltasks($user->id);
+            });
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
             return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
