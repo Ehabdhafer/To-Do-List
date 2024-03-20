@@ -7,6 +7,7 @@ import Signup from "./components/signup";
 import SignIn from "./components/SignIn";
 import Forgetpass from "./components/forget_pass";
 import Resetpass from "./components/reset_pass";
+import AddTask from "./components/add_task";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route exact path="/signup" element={<Signup />} />
             <Route exact path="/forget_pass" element={<Forgetpass />} />
             <Route exact path="/reset_password" element={<Resetpass />} />
+            <Route exact path="/addtask" element={<AddTask />} />
           </Routes>
         </div>
       </BrowserRouter>
