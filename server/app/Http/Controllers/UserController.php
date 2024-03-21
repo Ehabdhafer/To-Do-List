@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -69,6 +70,33 @@ class UserController extends Controller
         try {
             User::deleteuser($req->input('id'));
             return response()->json(['message' => 'User Deleted Successfully'], 200);
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    function getuser()
+    {
+        try {
+            $user = Auth::user();
+            return User::getuser($user->id);
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    function updateuser(Request $req)
+    {
+        try {
+            $user = Auth::user();
+            $updated = $req->only(['name', 'email']);
+            User::updateuser(
+                $user->id,
+                $updated
+            );
+            return response()->json(['message' => 'User updated successfully'], 200);
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
             return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);

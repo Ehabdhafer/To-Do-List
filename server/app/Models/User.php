@@ -78,6 +78,26 @@ class User extends Authenticatable
         }
     }
 
+    protected static function getuser($id)
+    {
+        try {
+            return self::select(['id', 'name', 'email', 'created_at', 'updated_at'])
+                ->findorfail($id);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    protected static function updateuser($id, $data)
+    {
+        try {
+            return self::findorfail($id)
+                ->update($data);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
