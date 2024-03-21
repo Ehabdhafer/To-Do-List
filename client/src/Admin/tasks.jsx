@@ -76,9 +76,12 @@ const AdminTasks = () => {
                 </td>
 
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <div className="flex items-center">
-                {task.description.split(" ").slice(0, 5).join(" ")}
-                {task.description.split(" ").length > 5 && "..."}
+                <div className="flex items-center" onClick={() => alert(task.description)}>
+                    <div>
+                        {task.description.split(" ").slice(0, 5).join(" ")}
+                        {task.description.split(" ").length > 5 && "..."}
+                    </div>
+                    <p className="text-xs text-blue-600">Click to expand</p>
                 </div>
                 </td>
 
@@ -130,11 +133,6 @@ const AdminTasks = () => {
 
                 <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
                 <div className="flex items-center justify-evenly">
-                    <button 
-                    // onClick={() => navigate("/adminaddtask", { state: { id: task.id } })}
-                    className="text-green-400 hover:text-green-500">
-                    AsignTask
-                    </button>
                     <button 
                     onClick={() => handleDelete(task.id)}
                     className="ml-2 text-red-600 hover:text-red-900">
