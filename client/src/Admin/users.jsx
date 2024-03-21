@@ -1,12 +1,15 @@
 import axios from "axios";
 import {  useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 
 const Users = () => {
     const token = Cookies.get("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const [users,setUsers] = useState(null);
+    const navigate = useNavigate();
+
 
 
     const handleDelete = async (id) => {
@@ -89,7 +92,7 @@ const Users = () => {
                 <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
                 <div className="flex items-center justify-evenly">
                     <button 
-                    // onClick={() => handleDelete(user.id)}
+                    onClick={() => navigate("/adminaddtask", { state: { id: user.id } })}
                     className="text-green-400 hover:text-green-500">
                     AsignTask
                     </button>

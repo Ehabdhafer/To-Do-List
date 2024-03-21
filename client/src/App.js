@@ -11,13 +11,18 @@ import AddTask from "./components/add_task";
 import UpdateTask from "./components/details";
 import TodayTasks from "./components/today_tasks";
 import Dashboard from "./Admin/Dashboard";
+import AdminAddTask from "./Admin/adminaddtask";
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          {window.location.pathname !== "/dashboard" ? <Sidebar /> : <></>}
+          {window.location.pathname !== "/dashboard" && "/adminaddtask" ? (
+            <Sidebar />
+          ) : (
+            <></>
+          )}
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<SignIn />} />
@@ -28,6 +33,7 @@ function App() {
             <Route exact path="/details/:id" element={<UpdateTask />} />
             <Route exact path="/today" element={<TodayTasks />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/adminaddtask" element={<AdminAddTask />} />
           </Routes>
         </div>
       </BrowserRouter>
