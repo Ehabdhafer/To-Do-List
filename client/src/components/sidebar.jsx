@@ -147,8 +147,8 @@ const Sidebar = () => {
             </li>
 
             <li>
-            <Link to={'/'}>
               <button
+              onClick={() =>{ navigate("/"); window.location.reload(); }}
                 className="flex items-center text-justify w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -165,7 +165,6 @@ const Sidebar = () => {
                   {taskCount}
                 </span>
               </button>
-              </Link>
             </li>
 
             <li>
