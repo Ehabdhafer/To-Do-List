@@ -57,8 +57,9 @@ class TaskController extends Controller
     function alltasks()
     {
         try {
-            // return Cache::remember('all_tasks', 60 * 60, function () {
             $user = Auth::user();
+            // $cacheKey = 'today_tasks_' . $user->id;
+            // return Cache::remember($cacheKey, 60 * 60, function () use ($user)  {
             return Task::alltasks($user->id);
             // });
         } catch (Exception $e) {
@@ -102,8 +103,9 @@ class TaskController extends Controller
     function todaytasks()
     {
         try {
-            // return Cache::remember('all_tasks', 60 * 60, function () {
             $user = Auth::user();
+            // $cacheKey = 'today_tasks_' . $user->id;
+            // return Cache::remember($cacheKey, 60 * 60, function () use ($user)  {
             return Task::todaytasks($user->id);
             // });
         } catch (Exception $e) {
