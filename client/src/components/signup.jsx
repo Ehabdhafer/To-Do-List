@@ -65,7 +65,7 @@ function Register() {
 
   const validatePassword = (password) => {
     const passwordPattern =
-    /^[A-Za-z\s]{6,30}$/;
+    /^[A-Za-z\s\d+]{6,30}$/;
     return passwordPattern.test(password);
   };
   const validateFirstName = (name) => {

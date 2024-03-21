@@ -22,6 +22,7 @@ function App() {
             <Route exact path="/forget_pass" element={<Forgetpass />} />
             <Route exact path="/reset_password" element={<Resetpass />} />
             <Route exact path="/addtask" element={<AddTask />} />
+            {/* <Route exact path="/details/:id" element={< />} /> */}
           </Routes>
         </div>
       </BrowserRouter>
