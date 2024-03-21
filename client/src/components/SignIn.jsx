@@ -46,7 +46,7 @@ const SignIn = () => {
       className="p-20 bg-image bg-[50%] bg-cover"
       style={{
         backgroundImage:
-          "url(https://miro.medium.com/v2/resize:fit:1126/1*ELBnrKVFj1M-CaD3G-jVtA.jpeg)",
+          "url(https://blog.hubspot.com/hubfs/To_Do_List.png)",
         height: "400px",
       }}
     >

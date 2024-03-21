@@ -102,7 +102,8 @@ const Sidebar = () => {
                     <ul className="space-y-2 font-medium">
 
             <li>
-            <Link to={'/addtask'}>
+            <Link to={'/addtask'}
+            className={`${!user && "hidden"} block`}>
               <button
                 className="flex items-center w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -118,7 +119,8 @@ const Sidebar = () => {
             </li>
 
             <li>
-            <Link to={'/search'}>
+            <Link to={'/search'}
+            className={`${!user && "hidden"} block`}>
               <button
                 className="flex items-center w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -153,7 +155,8 @@ const Sidebar = () => {
             </li>
 
             <li>
-            <Link to={'/today'}>
+            <Link to={'/today'}
+            className={`${!user && "hidden"} block`}>
               <button
                 className="flex items-center text-justify w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -171,7 +174,7 @@ const Sidebar = () => {
 
             <li>
               <Link to={'/login'}
-              className={`${!user && "md:block"} hidden`}>
+              className={`${user && "hidden"} block`}>
               <button
                 className="flex items-center text-justify w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -197,7 +200,7 @@ const Sidebar = () => {
 
             <li>
             <Link to={'/signup'}
-            className={`${!user && "md:block"} hidden`}>
+            className={`${user && "hidden"} block`}>
               <button
                 className="flex items-center text-justify w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
@@ -219,7 +222,7 @@ const Sidebar = () => {
 
             <li>
             <Link to={'/'}
-            className={`${user && "md:block"} hidden`}>
+            className={`${!user && "hidden"} block`}>
               <button
                 onClick={handleLogout}
                 className="flex items-center text-justify w-56 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
