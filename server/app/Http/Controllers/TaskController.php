@@ -50,6 +50,28 @@ class TaskController extends Controller
         }
     }
 
+    function taskcount()
+    {
+        try {
+            $user = Auth::user();
+            return Task::taskcount($user->id);
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    function todaytaskcount()
+    {
+        try {
+            $user = Auth::user();
+            return Task::todaytaskcount($user->id);
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     function todaytasks()
     {
         try {

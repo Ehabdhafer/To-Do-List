@@ -49,12 +49,33 @@ class Task extends Model
         }
     }
 
+    protected static function taskcount($user_id)
+    {
+        try {
+            return self::where('user_id', $user_id)
+                ->count();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
     protected static function todaytasks($user_id)
     {
         try {
             return self::where('user_id', $user_id)
                 ->where('due_date', now()->toDateString())
                 ->get();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    protected static function todaytaskcount($user_id)
+    {
+        try {
+            return self::where('user_id', $user_id)
+                ->where('due_date', now()->toDateString())
+                ->count();
         } catch (Exception $e) {
             throw $e;
         }
