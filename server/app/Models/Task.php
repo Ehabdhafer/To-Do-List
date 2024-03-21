@@ -69,6 +69,15 @@ class Task extends Model
         }
     }
 
+    protected static function adminalltask()
+    {
+        try {
+            return self::get();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
     protected static function taskcount($user_id)
     {
         try {
@@ -126,6 +135,17 @@ class Task extends Model
     }
 
     protected static function deletetask($user_id, $id)
+    {
+        try {
+            return self::where('user_id', $user_id)
+                ->findorfail($id)
+                ->delete();
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    protected static function deletetaskadmin($user_id, $id)
     {
         try {
             return self::where('user_id', $user_id)

@@ -67,6 +67,16 @@ class TaskController extends Controller
         }
     }
 
+    function adminalltask()
+    {
+        try {
+            return Task::adminalltask();
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     function taskcount()
     {
         try {
@@ -136,6 +146,17 @@ class TaskController extends Controller
         try {
             $user = Auth::user();
             Task::deletetask($user->id, $req->id);
+            return response()->json(['message' => 'Task deleted successfully'], 200);
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    function deletetaskadmin(Request $req)
+    {
+        try {
+            Task::deletetaskadmin($req->id);
             return response()->json(['message' => 'Task deleted successfully'], 200);
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());

@@ -18,4 +18,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::middleware(['auth:sanctum', 'role:1'])->group(function () {
     Route::post('/adminaddtask', [TaskController::class, 'adminaddtask']);
+    Route::get('/adminalltask', [TaskController::class, 'adminalltask']);
+    Route::delete('/deletetaskadmin', [TaskController::class, 'deletetaskadmin']);
 });
