@@ -50,6 +50,19 @@ class TaskController extends Controller
         }
     }
 
+    function todaytasks()
+    {
+        try {
+            // return Cache::remember('all_tasks', 60 * 60, function () {
+            $user = Auth::user();
+            return Task::todaytasks($user->id);
+            // });
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
+
     function taskid(Request $req)
     {
         try {
