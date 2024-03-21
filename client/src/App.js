@@ -15,8 +15,8 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        <Sidebar />
         <div className="App">
+          {window.location.pathname !== "/dashboard" ? <Sidebar /> : <></>}
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<SignIn />} />
