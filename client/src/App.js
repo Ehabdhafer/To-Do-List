@@ -9,6 +9,7 @@ import Forgetpass from "./components/forget_pass";
 import Resetpass from "./components/reset_pass";
 import AddTask from "./components/add_task";
 import UpdateTask from "./components/details";
+import TodayTasks from "./components/today_tasks";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/reset_password" element={<Resetpass />} />
             <Route exact path="/addtask" element={<AddTask />} />
             <Route exact path="/details/:id" element={<UpdateTask />} />
+            <Route exact path="/today" element={<TodayTasks />} />
           </Routes>
         </div>
       </BrowserRouter>
