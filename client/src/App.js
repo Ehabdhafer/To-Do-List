@@ -10,6 +10,7 @@ import Resetpass from "./components/reset_pass";
 import AddTask from "./components/add_task";
 import UpdateTask from "./components/details";
 import TodayTasks from "./components/today_tasks";
+import Dashboard from "./Admin/Dashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route exact path="/addtask" element={<AddTask />} />
             <Route exact path="/details/:id" element={<UpdateTask />} />
             <Route exact path="/today" element={<TodayTasks />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
       </BrowserRouter>
