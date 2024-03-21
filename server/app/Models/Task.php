@@ -39,6 +39,26 @@ class Task extends Model
         }
     }
 
+    protected static function adminaddtask(
+        $user_id,
+        $title,
+        $description,
+        $priority,
+        $due_date,
+    ) {
+        try {
+            return self::create([
+                'user_id' => $user_id,
+                'title' => $title,
+                'description' => $description,
+                'priority' => $priority,
+                'due_date' => $due_date,
+            ]);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
     protected static function alltasks($user_id)
     {
         try {

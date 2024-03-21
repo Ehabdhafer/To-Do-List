@@ -36,6 +36,23 @@ class TaskController extends Controller
             return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
         }
     }
+    function adminaddtask(Request $req)
+    {
+        try {
+            Task::adminaddtask(
+                $req->user_id,
+                $req->title,
+                $req->description,
+                $req->priority,
+                $req->due_date
+            );
+
+            return response()->json(['message' => 'Task added Successfully'], 201);
+        } catch (Exception $e) {
+            Log::error('Exception: ' . $e->getMessage());
+            return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
+        }
+    }
 
     function alltasks()
     {
