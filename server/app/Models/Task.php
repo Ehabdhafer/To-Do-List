@@ -145,11 +145,10 @@ class Task extends Model
         }
     }
 
-    protected static function deletetaskadmin($user_id, $id)
+    protected static function deletetaskadmin($id)
     {
         try {
-            return self::where('user_id', $user_id)
-                ->findorfail($id)
+            return self::findorfail($id)
                 ->delete();
         } catch (Exception $e) {
             throw $e;
