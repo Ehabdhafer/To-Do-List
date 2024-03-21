@@ -40,10 +40,10 @@ class TaskController extends Controller
     function alltasks()
     {
         try {
-            return Cache::remember('all_tasks', 60 * 60, function () {
-                $user = Auth::user();
-                return Task::alltasks($user->id);
-            });
+            // return Cache::remember('all_tasks', 60 * 60, function () {
+            $user = Auth::user();
+            return Task::alltasks($user->id);
+            // });
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
             return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
