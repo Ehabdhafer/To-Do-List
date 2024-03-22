@@ -1,12 +1,14 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const AddTask = () => {
     const token = Cookies.get("token");
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     const [error, setError] = useState("");
+    const navigate = useNavigate();
     const [formData,SetFormData] = useState({
         title:'',
         description:'',
@@ -24,6 +26,10 @@ const AddTask = () => {
             await axios.post('http://localhost:8000/addtask',
             formData);
             setError("Task added Successfully");
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1000);
         }catch(e){
             console.error('error posting data',e);
             setError("All Fields except due_date are required");
