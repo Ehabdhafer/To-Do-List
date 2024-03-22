@@ -2,6 +2,7 @@ import axios from "axios";
 import {  useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate, useParams } from "react-router-dom";
+import Notify from "./notify";
 
 
 const Profile = () => {
@@ -23,6 +24,7 @@ const Profile = () => {
         setUser(user);
 
         SetFormData({
+            user_id: user.id,
             name: user.name,
             email: user.email
         });
@@ -57,6 +59,8 @@ const Profile = () => {
 
     return (
         <>
+        
+        {formData.user_id && <Notify user_id={formData.user_id} />}
         <div
             className="p-20 bg-image bg-[50%] bg-cover"
             style={{

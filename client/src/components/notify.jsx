@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import Pusher from 'pusher-js';
+import { Link } from 'react-router-dom';
 
-const Notify = () => {
+const Notify = ({user_id} ) => {
     const [newTask, setNewTask] = useState(null);
     useEffect(() => {
-    // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
     const pusher = new Pusher('5c324dfac0dd8e2ed86a', {
       cluster: 'ap2',
     });
+    const channel = pusher.subscribe(`${user_id}`);
 
-    // const channel = pusher.subscribe('App.Models.User.' + 4);
-    const channel = pusher.subscribe('4');
-
-    channel.bind('Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function(data) {
-    //   alert('New task added: ' + JSON.stringify(data));
-      console.log('New task data:', data);
+    channel.bind('notification', function(data) {
+    //   console.log('New task data:', data);
       setNewTask(data.task);
+      setTimeout(() => {
+        setNewTask(null);
+    }, 5000);
     });
 
-    // Clean up the subscription on component unmount
     return () => {
       channel.unbind();
-      pusher.unsubscribe('4');
-    //   pusher.unsubscribe('App.Models.User.' + 4);
+      pusher.unsubscribe(`${user_id}`);
     };
   }, []);
 
@@ -32,22 +30,10 @@ const Notify = () => {
     <div>
         {!newTask ? (
             <div>
-            <h1>Notifications</h1>
-            <p>Waiting for notifications...</p>
             </div>
         ) : (
-            // <div>
-            // <h1>Notifications</h1>
-            // <div>
-            //     <h2>New Task</h2>
-            //     <p>ID: {newTask.id}</p>
-            //     <p>Title: {newTask.title}</p>
-            //     <p>Created At: {newTask.created_at}</p>
-            // </div>
-            // </div>
 
-            <div className="mt-2 flex flex-wrap justify-between">
-            
+            <div className=" flex flex-wrap justify-between">
             <div
             id="toast-notification"
             className=" xl:ml-72 w-full max-w-xs p-4 text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300"
@@ -81,6 +67,7 @@ const Notify = () => {
                 </svg>
                 </button>
             </div>
+            <Link to={`/details/${newTask.id}`}>
             <div className="flex items-center">
                 <div className="relative inline-block shrink-0">
                 <img
@@ -109,15 +96,17 @@ const Notify = () => {
                 </span>
                 </div>
                 <div className="ms-3 text-sm font-normal">
+                <div className="text-sm font-normal">{newTask.method}</div>
                 <div className="text-sm font-semibold text-gray-900 dark:text-white">
                     Title : {newTask.title}
                 </div>
-                <div className="text-sm font-normal">ss</div>
                 <span className="text-xs font-medium text-blue-600 dark:text-blue-500">
                 {newTask.created_at.split("T")[0]}{" "}{newTask.created_at.split("T")[1].split(".")[0]}
                 </span>
+                <span className='text-xs'>click to see details</span>
                 </div>
             </div>
+            </Link>
             </div>
             
 

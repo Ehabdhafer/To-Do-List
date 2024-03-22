@@ -2,6 +2,7 @@ import axios from "axios";
 import {  useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import Notify from "./notify";
 
 
 
@@ -9,7 +10,11 @@ import { Link } from "react-router-dom";
 const AllTask = () => {
     const token = Cookies.get("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    const [tasks,setTasks] = useState(null);
+    const [tasks,setTasks] = useState([]);
+    const [firstUserId, setFirstUserId] = useState(null);
+    const [notifyRendered, setNotifyRendered] = useState(false);
+
+
 
 
     const handleDelete = async (id) => {
@@ -28,6 +33,10 @@ const AllTask = () => {
         try{
             const response = await axios.get(`http://localhost:8000/alltasks`);
             setTasks(response.data);
+            if (!notifyRendered && response.data.length > 0) {
+                setFirstUserId(response.data[0].user_id);
+                setNotifyRendered(true);
+            }
         }catch (error){
             console.error('error fetching data',error);
         }
@@ -39,12 +48,13 @@ const AllTask = () => {
 
     return (
         <div className=" mt-12">
+            {notifyRendered && <Notify user_id={firstUserId} />}
             <div>
             {
                 tasks ? (
                     <div className="xl:ml-[15rem] lg:ml-20 flex flex-wrap justify-evenly gap-y-5">
                     {tasks.map((item) => (
-            <div className="  w-96 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div className="  w-96 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {item.title}
             </h5>

@@ -2,11 +2,14 @@ import axios from "axios";
 import {  useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import Notify from "./notify";
 
 const TodayTasks = () => {
     const token = Cookies.get("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const [tasks,setTasks] = useState(null);
+    const [firstUserId, setFirstUserId] = useState(null);
+    const [notifyRendered, setNotifyRendered] = useState(false);
 
 
     const handleDelete = async (id) => {
@@ -25,6 +28,10 @@ const TodayTasks = () => {
         try{
             const response = await axios.get(`http://localhost:8000/todaytasks`);
             setTasks(response.data);
+            if (!notifyRendered && response.data.length > 0) {
+                setFirstUserId(response.data[0].user_id);
+                setNotifyRendered(true);
+            }
         }catch (error){
             console.error('error fetching data',error);
         }
@@ -36,6 +43,7 @@ const TodayTasks = () => {
 
     return (
         <div className=" mt-12">
+            {notifyRendered && <Notify user_id={firstUserId} />}
             <div>
             {
                 tasks ? (

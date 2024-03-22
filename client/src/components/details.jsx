@@ -2,6 +2,7 @@ import axios from "axios";
 import {  useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate, useParams } from "react-router-dom";
+import Notify from "./notify";
 
 
 const UpdateTask = () => {
@@ -29,6 +30,7 @@ const UpdateTask = () => {
         setTasks(tasks);
 
         SetFormData({
+            user_id:tasks.user_id,
             title: tasks.title,
             description: tasks.description,
             priority: tasks.priority,
@@ -57,7 +59,7 @@ const UpdateTask = () => {
             setError("Your Task updated successfully");
             setTimeout(() => {
                 navigate("/");
-            }, 1000);
+            }, 4000);
         }catch(e){
             console.error('error posting data',e);
             setError("All Fields except due_date are required");
@@ -66,7 +68,9 @@ const UpdateTask = () => {
 
     return (
         <>
+        
   <section className="bg-gray-100 ">
+        {formData.user_id && <Notify user_id={formData.user_id} />}
     <div className="mx-auto max-w-screen-xl px-4 py-16 xl:py-0 sm:px-6 lg:px-8 ">
       <div className="flex justify-center items-center h-screen lg:grid-cols-5">
         

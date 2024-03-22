@@ -25,6 +25,7 @@ function App() {
           ) : (
             <></>
           )}
+          <Notify />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<SignIn />} />
