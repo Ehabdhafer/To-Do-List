@@ -138,9 +138,10 @@ class Task extends Model
     protected static function deletetask($user_id, $id)
     {
         try {
-            return self::where('user_id', $user_id)
-                ->findorfail($id)
-                ->delete();
+            $task = self::where('user_id', $user_id)
+                ->findorfail($id);
+            $task->delete();
+            return $task;
         } catch (Exception $e) {
             throw $e;
         }
@@ -149,8 +150,9 @@ class Task extends Model
     protected static function deletetaskadmin($id)
     {
         try {
-            return self::findorfail($id)
-                ->delete();
+            $task = self::findorfail($id);
+            $task->delete();
+            return $task;
         } catch (Exception $e) {
             throw $e;
         }

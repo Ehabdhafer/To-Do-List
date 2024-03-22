@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use App\Notifications\AddTask;
+use App\Notifications\DeleteTask;
 use App\Notifications\UpdateTask;
 use Exception;
 use Illuminate\Http\Request;
@@ -160,7 +161,10 @@ class TaskController extends Controller
     {
         try {
             $user = Auth::user();
-            Task::deletetask($user->id, $req->id);
+            $task = Task::deletetask($user->id, $req->id);
+
+            Notification::send($user, new DeleteTask($task));
+
             return response()->json(['message' => 'Task deleted successfully'], 200);
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
@@ -171,7 +175,10 @@ class TaskController extends Controller
     function deletetaskadmin(Request $req)
     {
         try {
-            Task::deletetaskadmin($req->id);
+            $task = Task::deletetaskadmin($req->id);
+
+            $user = User::find($task->user_id);
+            Notification::send($user, new DeleteTask($task));
             return response()->json(['message' => 'Task deleted successfully'], 200);
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
