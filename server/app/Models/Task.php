@@ -126,9 +126,10 @@ class Task extends Model
         $data
     ) {
         try {
-            return self::where('user_id', $user_id)
-                ->findorfail($id)
-                ->update($data);
+            $task = self::where('user_id', $user_id)
+                ->findorfail($id);
+            $task->update($data);
+            return $task;
         } catch (Exception $e) {
             throw $e;
         }

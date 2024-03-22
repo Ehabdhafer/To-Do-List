@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use App\Notifications\AddTask;
+use App\Notifications\UpdateTask;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -44,13 +46,16 @@ class TaskController extends Controller
     function adminaddtask(Request $req)
     {
         try {
-            Task::adminaddtask(
+            $task = Task::adminaddtask(
                 $req->user_id,
                 $req->title,
                 $req->description,
                 $req->priority,
                 $req->due_date
             );
+
+            $user = User::find($req->user_id);
+            Notification::send($user, new AddTask($task));
 
             return response()->json(['message' => 'Task added Successfully'], 201);
         } catch (Exception $e) {
@@ -135,11 +140,14 @@ class TaskController extends Controller
         try {
             $user = Auth::user();
             $updated = $req->only(['title', 'description', 'priority', 'due_date', 'status']);
-            Task::updatetask(
+            $task = Task::updatetask(
                 $user->id,
                 $req->id,
                 $updated
             );
+
+            Notification::send($user, new UpdateTask($task));
+
 
             return response()->json(['message' => 'Task updated successfully'], 200);
         } catch (Exception $e) {

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class AddTask extends Notification implements ShouldQueue
+class UpdateTask extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -69,7 +69,7 @@ class AddTask extends Notification implements ShouldQueue
                 'id' => $this->task->id,
                 'title' => $this->task->title,
                 'created_at' => $this->task->created_at,
-                'method' => 'New Task Added',
+                'method' => 'Task updated successfully',
             ],
         ];
     }
@@ -81,6 +81,6 @@ class AddTask extends Notification implements ShouldQueue
 
     public function broadcastType()
     {
-        return 'new-task';
+        return 'update-task';
     }
 }
