@@ -13,6 +13,7 @@ import TodayTasks from "./components/today_tasks";
 import Dashboard from "./Admin/Dashboard";
 import AdminAddTask from "./Admin/adminaddtask";
 import Profile from "./components/profile";
+import Notify from "./components/notify";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/adminaddtask" element={<AdminAddTask />} />
             <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/notify" element={<Notify />} />
           </Routes>
         </div>
       </BrowserRouter>

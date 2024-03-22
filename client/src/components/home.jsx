@@ -2,11 +2,11 @@ import AllTask from "./all_tasks";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import {useNavigate } from "react-router-dom";
-import Notification from "./notification";
+import Notify from "./notify";
 
 const Home = () => {
     const navigate = useNavigate();
-    const [notify, setNotify] = useState(false);
+    // const [notify, setNotify] = useState(false);
     const [cookie] = useCookies(["token"], {
         token: null,
       });
@@ -27,7 +27,7 @@ const Home = () => {
 
     return (
         <div>
-            {notify && <Notification />}
+            <Notify />
             <AllTask />
         </div>
     );
