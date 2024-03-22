@@ -49,7 +49,7 @@ INSERT INTO roles (role)
 ```
 create at least 1 admin manually from database put this query:
 INSERT INTO users (name, email, password, role_id)
-  VALUES ('John Doe', 'johndoe@example.com', 'password123', 1);
+  VALUES ('Ehab Abed', 'ehab@gmail.com', 'ASAXas4335@#@#', 1);
 ```
 
 ### Navigate to dashboard:
