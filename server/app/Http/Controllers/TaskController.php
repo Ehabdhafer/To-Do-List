@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Notifications\AddTask;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +24,7 @@ class TaskController extends Controller
             ];
             $req->validate($validate);
 
-            Task::addtask(
+            $task = Task::addtask(
                 $user->id,
                 $req->title,
                 $req->description,
@@ -30,12 +32,15 @@ class TaskController extends Controller
                 $req->due_date
             );
 
+            Notification::send($user, new AddTask($task));
+
             return response()->json(['message' => 'Task added Successfully'], 201);
         } catch (Exception $e) {
             Log::error('Exception: ' . $e->getMessage());
             return response()->json(['error' => 'Internal Server Error', 'message' => $e->getMessage()], 500);
         }
     }
+
     function adminaddtask(Request $req)
     {
         try {
