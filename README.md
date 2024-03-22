@@ -1,16 +1,39 @@
 # To-Do-List
 
+## Introduction 🖖
+
 I develop a comprehensive Laravel application that incorporates a To-Do List management with real-time
 notifications and caching features.
 
-- cd server
-- composer install
-- php artisan migrate
-- php artisan serve
+## Installation 💽
 
+```bash
+- cd server
+```
+
+```bash
+- composer install
+```
+
+```bash
+- php artisan migrate
+```
+
+```bash
+- php artisan serve
+```
+
+```bash
 - cd client
+```
+
+```bash
 - npm i
+```
+
+```bash
 - npm start
+```
 
 - create 2 roles manually from database put this query:
 - INSERT INTO roles (role)
