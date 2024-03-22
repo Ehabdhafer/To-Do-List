@@ -9,46 +9,46 @@
 Laravel :
 
 ```bash
-- cd server
+cd server
 ```
 
 ```bash
-- composer install
+composer install
 ```
 
 ```bash
-- php artisan migrate
+php artisan migrate
 ```
 
 ```bash
-- php artisan serve
+php artisan serve
 ```
 
 React
 
 ```bash
-- cd client
+cd client
 ```
 
 ```bash
-- npm i
+npm i
 ```
 
 ```bash
-- npm start
+npm start
 ```
 
 ### Inserting in database:
 
 ```
-- create 2 roles manually from database put this query:
-- INSERT INTO roles (role)
+create 2 roles manually from database put this query:
+INSERT INTO roles (role)
   VALUES ('admin'),('user');
 ```
 
 ```
-- create at least 1 admin manually from database put this query:
-- INSERT INTO users (name, email, password, role_id)
+create at least 1 admin manually from database put this query:
+INSERT INTO users (name, email, password, role_id)
   VALUES ('John Doe', 'johndoe@example.com', 'password123', 1);
 ```
 
