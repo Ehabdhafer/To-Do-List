@@ -32,6 +32,11 @@ class AddTask extends Notification implements ShouldQueue
         return ['database', 'broadcast'];
     }
 
+    public function broadcastOn()
+    {
+        return [`App.Models.User.` + $this->task->user_id,];
+    }
+
     /**
      * Get the mail representation of the notification.
      */
