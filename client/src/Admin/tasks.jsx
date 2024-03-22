@@ -126,9 +126,13 @@ const AdminTasks = () => {
                 </td>
 
                 <td className="px-6 py-4 whitespace-nowrap">
-                <div className="flex items-center">
-                    {task.due_date.split(" ")[0]}
-                </div>
+                {task.due_date ? (
+                    <div className="text-sm text-gray-900">
+                    {task.due_date.split("T")[0]}
+                    </div>
+                ) : (
+                    <div className="text-sm text-gray-900">N/A</div>
+                )}
                 </td>
 
                 <td className="px-6 py-4 whitespace-nowrap  text-sm font-medium">
