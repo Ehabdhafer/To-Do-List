@@ -7,6 +7,8 @@ notifications and caching features.
 
 ## Installation 💽
 
+Laravel :
+
 ```bash
 - cd server
 ```
@@ -22,6 +24,8 @@ notifications and caching features.
 ```bash
 - php artisan serve
 ```
+
+React
 
 ```bash
 - cd client
