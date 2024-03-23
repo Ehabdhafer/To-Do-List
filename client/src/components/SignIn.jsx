@@ -11,10 +11,25 @@ const SignIn = () => {
   const [error, setError] = useState("");
 
   const handleSignIn = async () => {
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email.");
+      return;
+    } else {
+      setError("");
+    }
+
+    if (!validatePassword(password)) {
+      setError(`Password must be between 6 and 30 characters in length.`);
+      return;
+    } else {
+      setError("");
+    }
+
     if (!email || !password) {
       setError("Email and password are required.");
       return;
     }
+    
 
     try {
       const response = await axios.post("http://localhost:8000/login", {
@@ -39,6 +54,16 @@ const SignIn = () => {
         setError("Sign-in failed. Email or password is invalid");
       }, 300);
     }
+  };
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.(com|net)$/.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordPattern =
+    /^[A-Za-z0-9@#]*$/;
+    return passwordPattern.test(password);
   };
 
   return (
