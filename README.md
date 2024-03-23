@@ -52,10 +52,15 @@ INSERT INTO users (name, email, password, role_id)
   VALUES ('Ehab Abed', 'ehab@gmail.com', 'ASAXas4335@#@#', 1);
 ```
 
-### Navigate to dashboard:
+## Navigate to dashboard:
 
 - login from admin account then go to
   http://localhost:3000/dashboard
+
+## Notification:
+
+- Notify the user when an admin assigns a task to them or deletes a task.
+- Notify the user when they add, update, or delete a task for themselves.
 
 # Technologies Used
 
