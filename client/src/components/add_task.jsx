@@ -12,7 +12,7 @@ const AddTask = () => {
     const [formData,SetFormData] = useState({
         title:'',
         description:'',
-        priority:'',
+        priority:'High',
         due_date:'',
     });
 
